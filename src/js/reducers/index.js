@@ -1,9 +1,19 @@
+// src/js/reducers/index.js
+
+import { ADD_ARTICLE } from "../constants/action-types";
+
 const initialState = {
-    articles: []
-  };
-  
-  function rootReducer(state = initialState, action) {
-    return state;
-  };
-  
-  export default rootReducer;
+  articles: []
+};
+
+function rootReducer(state = initialState, action) {
+  // refrain from using push, at it mutates array
+  if (action.type === ADD_ARTICLE) {
+    return Object.assign({}, state, {
+      articles: state.articles.concat(action.payload)
+    });
+  }
+  return state;
+}
+
+export default rootReducer;

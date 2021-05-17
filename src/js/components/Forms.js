@@ -9,14 +9,13 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-const ConnectedForm = () => {
+const ConnectedForm = ({addArticle}) => {
 
     const [theTitle,setTheTitle] = useState('')
 
     const handleSubmit = (v) =>{
         v.preventDefault();
-        console.log('gsgsdf')
-        console.log(theTitle)
+        addArticle({id:'test',title:theTitle})
     }
 
     return (

@@ -16,6 +16,7 @@ const ConnectedForm = ({addArticle}) => {
     const handleSubmit = (v) =>{
         v.preventDefault();
         addArticle({id:'test',title:theTitle})
+        setTheTitle('')
     }
 
     return (
@@ -26,6 +27,7 @@ const ConnectedForm = ({addArticle}) => {
                 <input
                     type="text"
                     id="title"
+                    value={theTitle}
                     onChange={(e) => setTheTitle(e.target.value)}
                 />
             </div>

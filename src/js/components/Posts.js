@@ -2,13 +2,21 @@ import React, { Component, useEffect } from "react";
 import { connect } from "react-redux";
 import { getData } from "../actions/index";
 
-const ConnectedPosts = ({getData}) => {
+const ConnectedPosts = ({getData,articles}) => {
 
     useEffect(() => {
 
         getData();
 
+        //console.log(articles)
+
     },[])
+
+    useEffect(() => {
+
+        console.log('articles',articles)
+
+    },[articles])
 
 
     return (
@@ -16,8 +24,14 @@ const ConnectedPosts = ({getData}) => {
     )
 }
 
+function mapStateToProps(state) {
+    return {
+      articles: state.remoteArticles.slice(0, 10)
+    };
+  }
+
 const Post = connect(
-    null,
+    mapStateToProps,
     {getData}
   )(ConnectedPosts);
 

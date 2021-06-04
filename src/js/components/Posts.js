@@ -2,37 +2,41 @@ import React, { Component, useEffect } from "react";
 import { connect } from "react-redux";
 import { getData } from "../actions/index";
 
-const ConnectedPosts = ({getData,articles}) => {
+const ConnectedPosts = ({ getData, articles }) => {
 
-    useEffect(() => {
+  useEffect(() => {
 
-        getData();
+    getData();
 
-        //console.log(articles)
+    //console.log(articles)
 
-    },[])
+  }, [])
 
-    useEffect(() => {
+  useEffect(() => {
 
-        console.log('articles',articles)
+    console.log('articles', articles)
 
-    },[articles])
+  }, [articles])
 
 
-    return (
-       <>Test</>
-    )
+  return (
+    <ul>
+      {articles.map(el => (
+        <li key={el.id}>{el.title}</li>
+      ))}
+    </ul>
+  );
 }
 
 function mapStateToProps(state) {
-    return {
-      articles: state.remoteArticles.slice(0, 10)
-    };
-  }
+  return {
+    articles: state.remoteArticles.slice(0, 10)
+  };
+}
 
 const Post = connect(
-    mapStateToProps,
-    {getData}
-  )(ConnectedPosts);
+  mapStateToProps,
+  { getData }
+)(ConnectedPosts);
 
 export default Post

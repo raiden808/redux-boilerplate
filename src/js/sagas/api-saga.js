@@ -1,4 +1,5 @@
 import { takeEvery, call, put } from "redux-saga/effects";
+import "regenerator-runtime";
 
 export default function* watcherSaga() {
     yield takeEvery("DATA_REQUESTED", workerSaga);
